@@ -5,7 +5,7 @@
     "description": "Fine dining with a sunset view.",
     "price": 60,
     "website": "https://reservation.com/sunset",
-    "image": "./assets/sunset.jpg"
+    "image": "/assets/sunset.jpg"
   },
   {
     "name": "Green Garden Cafe",
@@ -13,7 +13,7 @@
     "description": "Organic meals in a garden setting.",
     "price": 45,
     "website": "https://reservation.com/greengarden",
-    "image": "./assets/garden.jpg"
+    "image": "/assets/garden.jpg"
   },
   {
     "name": "City Noodle House",
@@ -21,6 +21,6 @@
     "description": "Authentic Asian noodles in the city center.",
     "price": 35,
     "website": "https://reservation.com/noodlehouse",
-    "image": "./assets/noodle.jpg"
+    "image": "/assets/noodle.jpg"
   }
 ]
