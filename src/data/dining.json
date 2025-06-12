@@ -5,7 +5,7 @@
     "description": "Fine dining with a sunset view.",
     "price": 60,
     "website": "https://reservation.com/sunset",
-    "image": "/assets/sunset.jpg"
+    "image": "https://picsum.photos/id/1062/400/300"
   },
   {
     "name": "Green Garden Cafe",
