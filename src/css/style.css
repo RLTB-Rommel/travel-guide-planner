@@ -103,23 +103,40 @@ body {
   background: #ccc;
 }
 
-/* Results Section */
 .results {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+@media screen and (max-width: 767px) {
+  .results {
+    display: flex;
+    flex-direction: column;
+    height: 450px; /* enough to show 2 cards */
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+  }
 }
 
 .card {
   display: flex;
-  justify-content: space-between;
+  gap: 1rem;
   background: white;
-  padding: 1rem;
   border-radius: 10px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+  min-height: 180px;
 }
 
+@media screen and (max-width: 767px) {
+  .card {
+    flex: 0 0 auto; /* prevent shrinking */
+    margin-bottom: 1rem;
+  }
+}
 .card:hover {
   transform: scale(1.01);
 }
