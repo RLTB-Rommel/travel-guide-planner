@@ -172,11 +172,12 @@ footer {
 
 .image {
   width: 100%;
-  height: 120px;
-  background-size: cover;
-  background-position: center;
+  height: 140px;
+  object-fit: cover;
   border-radius: 10px;
+  display: block;
 }
+
 .dining-radio {
   margin-top: 0.5rem;
 }
