@@ -12,6 +12,14 @@ export async function renderDining(index = 0) {
   const data = await fetchDiningData();
   const restaurant = data[index];
 
+  const favoriteBtn = document.getElementById("favorite-btn");
+  favoriteBtn.classList.remove("active");
+
+  favoriteBtn.onclick = () => {
+  favoriteBtn.classList.toggle("active");
+  console.log(`Toggled favorite for: ${restaurant.name}`);
+  };
+
   document.getElementById("dining-img").src = restaurant.image;
   document.getElementById("dining-img").alt = restaurant.name;
   document.getElementById("dining-name").textContent = restaurant.name;

@@ -185,3 +185,24 @@ footer {
   margin-right: 0.3rem;
   accent-color: #1E88E5;
 }
+
+.card {
+  position: relative;
+}
+
+.favorite {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #999;
+  cursor: pointer;
+  z-index: 2;
+  transition: color 0.3s ease;
+}
+
+.favorite.active {
+  color: red;
+}
