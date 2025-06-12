@@ -16,12 +16,14 @@ export async function renderDining(index = 0) {
   favoriteBtn.classList.remove("active");
 
   favoriteBtn.onclick = () => {
-  favoriteBtn.classList.toggle("active");
-  console.log(`Toggled favorite for: ${restaurant.name}`);
+    favoriteBtn.classList.toggle("active");
+    console.log(`Toggled favorite for: ${restaurant.name}`);
   };
 
+  // Set all dynamic content
   document.getElementById("dining-img").src = restaurant.image;
   document.getElementById("dining-img").alt = restaurant.name;
+  document.getElementById("dining-category").textContent = "Dining";
   document.getElementById("dining-name").textContent = restaurant.name;
   document.getElementById("dining-stars").textContent =
     "⭐".repeat(Math.floor(restaurant.stars)) +
