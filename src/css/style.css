@@ -5,15 +5,18 @@
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   font-family: 'Open Sans', sans-serif;
   background-color: #f5f5f5;
   color: #333;
 }
 
 .container {
+  flex: 1; /* makes it grow to fill remaining height */
   display: grid;
   grid-template-columns: 220px 1fr;
-  min-height: 100vh;
 }
 
 /* Sidebar */
@@ -51,10 +54,13 @@ body {
 
 /* Main Content */
 .main-content {
-  padding: 1.5rem;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   gap: 1rem;
+  padding: 1.5rem;
+  min-height: 100%;
+  box-sizing: border-box;
 }
 
 .top-bar {
@@ -108,23 +114,29 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
-  padding: 1rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 1rem 2rem;
+  width: 100%;
 }
 
 @media screen and (max-width: 767px) {
   .results {
     display: flex;
     flex-direction: column;
-    height: 450px; /* Show 2 cards max */
+    height: 450px;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    gap: 1rem;
+    padding-right: 0.5rem;
   }
 
   .card {
     flex: 0 0 auto;
-    margin-bottom: 1rem;
+    width: 100%;
+    max-width: 100%;
+    scroll-snap-align: start;
+    margin-bottom: 0.5rem;
   }
 }
 
@@ -227,4 +239,60 @@ footer {
   color: #777;
   background-color: #fff;
   border-top: 1px solid #ddd;
+  margin-top: auto; /* push footer to bottom when space available */
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.popup-content {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  max-width: 90%;
+  max-height: 90%;
+  overflow: auto;
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: white;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+#dining-img {
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .popup-content {
+    width: 800px;
+    max-width: 90%;
+    padding: 2rem;
+  }
+}
+
+.popup-overlay.show {
+  display: flex !important; /* ensure it's displayed as flex for centering */
+}
+
+#leaflet-map {
+  width: 100%;
+  height: 400px; /* Or any fixed height you want */
+  border-radius: 8px;
 }

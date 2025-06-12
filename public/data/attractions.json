@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Skyview Tower",
+    "stars": 4.7,
+    "description": "Panoramic views from the top of the city.",
+    "price": 20,
+    "website": "https://skyview-reservation.com/skyview",
+    "image": "/assets/skyview.jpg"
+  },
+  {
+    "name": "Old City Ruins",
+    "stars": 4.4,
+    "description": "A walk through ancient city foundations.",
+    "price": 15,
+    "website": "https://ruins-reservation.com/ruins",
+    "image": "/assets/ruins.jpg"
+  },
+  {
+    "name": "Oceanfront Aquarium",
+    "stars": 4.6,
+    "description": "Discover marine life near the shore.",
+    "price": 30,
+    "website": "https://aquarium-reservation.com/aquarium",
+    "image": "/assets/aquarium.jpg"
+  }
+]

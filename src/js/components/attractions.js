@@ -8,7 +8,7 @@ async function fetchAttractionsData() {
   return attractionsData;
 }
 
-export async function renderAttraction(index = 0) {
+export async function renderAttractions(index = 0) {
   const data = await fetchAttractionsData();
   const place = data[index];
 
@@ -35,11 +35,11 @@ export async function renderAttraction(index = 0) {
   document.getElementById("attractions-link").textContent = new URL(place.website).hostname;
 }
 
-export function setupAttractionRadio() {
+export function setupAttractionsRadio() {
   const radios = document.querySelectorAll('input[name="attractions"]');
   radios.forEach((radio) => {
     radio.addEventListener("change", (e) => {
-      renderAttraction(parseInt(e.target.value));
+      renderAttractions(parseInt(e.target.value));
     });
   });
 }

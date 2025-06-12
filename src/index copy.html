@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travel Guide Planner</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">✈️ Travel Guide<br />Planner</div>
+      <div class="nav-icons">
+        <button>Profile</button>
+        <button>Explore</button>
+        <button>Chat</button>
+        <button>Feed</button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Search and Filter Bar -->
+      <header class="top-bar">
+        <input type="text" placeholder="City, Country" />
+        <button>🔍</button>
+      </header>
+
+      <div class="filters">
+        <div class="category">
+          <button>View</button>
+          <button>Nature</button>
+          <button>Beach</button>
+          <button>Historical</button>
+        </div>
+        <div class="sort">
+          <button>Recommended</button>
+          <button>Distance</button>
+          <button>Price</button>
+          <button>Deals</button>
+          <button>Stars</button>
+        </div>
+      </div>
+
+      <!-- Cards Grid Section -->
+      <section class="results">
+
+        <!-- Card 1: Dining -->
+        <div class="card" id="dining-card">
+          <button class="favorite" id="favorite-btn">♡</button>
+          <img id="dining-img" class="image" src="" alt="Dining Image" onclick="openPopup('popup-map')" />
+          <div class="info">
+            <h4 id="dining-category">Dining</h4>
+            <h3 id="dining-name">Dining Place</h3>
+            <p><span id="dining-stars">⭐⭐⭐⭐☆</span> <strong>Excellent</strong></p>
+            <p id="dining-desc">small description</p>
+            <p class="price">$<span id="dining-price">50</span></p>
+            <p class="source">
+              <a href="#" onclick="openPopup('popup-contact')" id="dining-link">Reservation.com</a>
+            </p>
+            <div class="dining-radio">
+              <input type="radio" name="dining" value="0" checked />
+              <input type="radio" name="dining" value="1" />
+              <input type="radio" name="dining" value="2" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Attractions -->
+        <div class="card" id="attractions-card">
+          <button class="favorite" id="attractions-favorite-btn">♡</button>
+          <img id="attractions-img" class="image" src="" alt="Attractions Image" />
+          <div class="info">
+            <h4 id="attractions-category">Attractions</h4>
+            <h3 id="attractions-name">Attractions Place</h3>
+            <p><span id="attractions-stars">⭐⭐⭐⭐☆</span> <strong>Excellent</strong></p>
+            <p id="attractions-desc">small description</p>
+            <p class="price">$<span id="attractions-price">50</span></p>
+            <p class="source">
+              <a href="#" target="_blank" id="attractions-link">Attractions.com</a>
+            </p>
+            <div class="attractions-radio">
+              <input type="radio" name="attractions" value="0" checked />
+              <input type="radio" name="attractions" value="1" />
+              <input type="radio" name="attractions" value="2" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Adventure -->
+        <div class="card" id="adventure-card">
+          <button class="favorite" id="adventure-favorite-btn">♡</button>
+          <img id="adventure-img" class="image" src="" alt="Adventure Image" />
+          <div class="info">
+            <h4 id="adventure-category">Adventure</h4>
+            <h3 id="adventure-name">Adventure Place</h3>
+            <p><span id="adventure-stars">⭐⭐⭐⭐☆</span> <strong>Excellent</strong></p>
+            <p id="adventure-desc">small description</p>
+            <p class="price">$<span id="adventure-price">50</span></p>
+            <p class="source">
+              <a href="#" target="_blank" id="adventure-link">Adventure.com</a>
+            </p>
+            <div class="adventure-radio">
+              <input type="radio" name="adventure" value="0" checked />
+              <input type="radio" name="adventure" value="1" />
+              <input type="radio" name="adventure" value="2" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Educational -->
+        <div class="card" id="educational-card">
+          <button class="favorite" id="educational-favorite-btn">♡</button>
+          <img id="educational-img" class="image" src="" alt="Educational Image" />
+          <div class="info">
+            <h4 id="educational-category">Educational</h4>
+            <h3 id="educational-name">Educational Place</h3>
+            <p><span id="educational-stars">⭐⭐⭐☆☆</span> <strong>Excellent</strong></p>
+            <p id="educational-desc">small description</p>
+            <p class="price">$<span id="educational-price">50</span></p>
+            <p class="source">
+              <a href="#" target="_blank" id="educational-link">Educational.com</a>
+            </p>
+            <div class="educational-radio">
+              <input type="radio" name="educational" value="0" checked />
+              <input type="radio" name="educational" value="1" />
+              <input type="radio" name="educational" value="2" />
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Travel Guide Planner | Rommel F. Aunario | WDD 330 Final Project</p>
+    <p>Last modified: mm/dd/yyyy hr:min:secs</p>
+  </footer>
+
+  <!-- Modal 1: Contact Form -->
+  <div id="popup-contact" class="popup-overlay">
+    <div class="popup-content">
+      <button class="close-btn" onclick="closePopup('popup-contact')">×</button>
+      <img src="/assets/image1.png" alt="Contact Form Screenshot" />
+    </div>
+  </div>
+
+  <!-- Modal 2: Map Info -->
+  <div id="popup-map" class="popup-overlay">
+    <div class="popup-content">
+      <button class="close-btn" onclick="closePopup('popup-map')">×</button>
+      <img src="/assets/image2.png" alt="Map Info Screenshot" />
+    </div>
+  </div>
+
+  <script>
+  function openPopup(id) {
+    document.getElementById(id).style.display = 'flex';
+  }
+
+  function closePopup(id) {
+    document.getElementById(id).style.display = 'none';
+  }
+
+  // Optional: Close popup when clicking outside content
+  document.querySelectorAll('.popup-overlay').forEach(popup => {
+    popup.addEventListener('click', (e) => {
+      if (e.target.classList.contains('popup-overlay')) {
+        popup.style.display = 'none';
+      }
+    });
+  });
+</script>
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

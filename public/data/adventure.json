@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Mountain Trek Camp",
+    "stars": 4.9,
+    "description": "Challenging hikes with scenic rewards.",
+    "price": 75,
+    "website": "https://mountaintrek-reservation.com/trek",
+    "image": "/assets/mountaintrek.jpg"
+  },
+  {
+    "name": "White Water Rafting",
+    "stars": 4.6,
+    "description": "High-adrenaline rafting for thrill-seekers.",
+    "price": 65,
+    "website": "https://rafting-reservation.com/rafting",
+    "image": "/assets/rafting.jpg"
+  },
+  {
+    "name": "Desert Safari Ride",
+    "stars": 4.3,
+    "description": "4x4 off-road experience in the dunes.",
+    "price": 55,
+    "website": "https://safari-reservation.com/safari",
+    "image": "/assets/safari.jpg"
+  }
+]

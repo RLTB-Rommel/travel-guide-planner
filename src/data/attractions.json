@@ -4,7 +4,7 @@
     "stars": 4.7,
     "description": "Panoramic views from the top of the city.",
     "price": 20,
-    "website": "https://attractions.com/skyview",
+    "website": "https://skyview-reservation.com/skyview",
     "image": "/assets/skyview.jpg"
   },
   {
@@ -12,7 +12,7 @@
     "stars": 4.4,
     "description": "A walk through ancient city foundations.",
     "price": 15,
-    "website": "https://attractions.com/ruins",
+    "website": "https://ruins-reservation.com/ruins",
     "image": "/assets/ruins.jpg"
   },
   {
@@ -20,7 +20,7 @@
     "stars": 4.6,
     "description": "Discover marine life near the shore.",
     "price": 30,
-    "website": "https://attractions.com/aquarium",
+    "website": "https://aquarium-reservation.com/aquarium",
     "image": "/assets/aquarium.jpg"
   }
 ]

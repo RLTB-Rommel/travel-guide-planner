@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Sunset Bistro",
+    "stars": 4.5,
+    "description": "Fine dining with a sunset view.",
+    "price": 60,
+    "website": "https://sunset-reservation.com/sunset",
+    "image": "/assets/sunset.jpg",
+    "location": "White Beach, Boracay, Philippines",
+    "latitude": 11.969,
+    "longitude": 121.927
+  },
+  {
+    "name": "Green Garden Cafe",
+    "stars": 4.0,
+    "description": "Organic meals in a garden setting.",
+    "price": 45,
+    "website": "https://garden-reservation.com/greengarden",
+    "image": "/assets/garden.jpg",
+    "location": "Baguio Botanical Garden, Baguio City, Philippines",
+    "latitude": 16.412,
+    "longitude": 120.615
+  },
+  {
+    "name": "City Noodle House",
+    "stars": 4.2,
+    "description": "Authentic Asian noodles in the city center.",
+    "price": 35,
+    "website": "https://noodle-reservation.com/noodlehouse",
+    "image": "/assets/noodle.jpg",
+    "location": "Binondo Chinatown, Manila, Philippines",
+    "latitude": 14.5995,
+    "longitude": 120.9783
+  }
+]
