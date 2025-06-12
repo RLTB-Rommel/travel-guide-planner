@@ -46,15 +46,20 @@
       <!-- Result Cards -->
       <section class="results">
         <!-- Card 1 -->
-        <div class="card">
+        <div class="card" id="dining-card">
+          <div class="image" id="dining-img">📷</div>
           <div class="info">
-            <h3>Dining</h3>
-            <p>⭐⭐⭐⭐☆ <strong>Excellent 9.2</strong></p>
-            <p>Small description</p>
-            <p class="price">$50</p>
-            <p class="source">Reservation.com</p>
+            <h3 id="dining-name">Dining</h3>
+            <p><span id="dining-stars">⭐⭐⭐⭐☆</span> <strong>Excellent</strong></p>
+            <p id="dining-desc">small description</p>
+            <p class="price">$<span id="dining-price">50</span></p>
+            <p class="source"><a href="#" target="_blank" id="dining-link">Reservation.com</a></p>
+            <div class="dining-radio">
+              <input type="radio" name="dining" value="0" checked />
+              <input type="radio" name="dining" value="1" />
+              <input type="radio" name="dining" value="2" />
+            </div>
           </div>
-          <div class="image">📷</div>
         </div>
 
         <!-- Card 2 -->

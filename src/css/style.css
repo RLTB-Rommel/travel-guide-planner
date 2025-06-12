@@ -169,3 +169,18 @@ footer {
   background-color: #fff;
   border-top: 1px solid #ddd;
 }
+
+.image {
+  width: 100%;
+  height: 120px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+}
+.dining-radio {
+  margin-top: 0.5rem;
+}
+.dining-radio input[type="radio"] {
+  margin-right: 0.3rem;
+  accent-color: #1E88E5;
+}
