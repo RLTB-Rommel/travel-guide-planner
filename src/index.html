@@ -64,45 +64,68 @@
           </div>
         </div>
 
-        <!-- Card 2 -->
-        <div class="card">
+        <!-- Card 2: Attractions -->
+        <div class="card" id="attractions-card">
+          <button class="favorite" id="attractions-favorite-btn">♡</button>
+          <img id="attractions-img" class="image" src="" alt="Attractions Image" />
           <div class="info">
-            <h3>Attractions</h3>
-            <p>⭐⭐⭐⭐☆ <strong>Excellent 9.2</strong></p>
-            <p>Small description</p>
-            <p class="price">$50</p>
-            <p class="source">Attractions.com</p>
+            <h4 id="attractions-category">Attractions</h4>
+            <h3 id="attractions-name">Attractions Place</h3>
+            <p><span id="attractions-stars">⭐⭐⭐⭐☆</span> <strong>Excellent</strong></p>
+            <p id="attractions-desc">small description</p>
+            <p class="price">$<span id="attractions-price">50</span></p>
+            <p class="source">
+              <a href="#" target="_blank" id="attractions-link">Attractions.com</a>
+            </p>
+            <div class="dining-radio">
+              <input type="radio" name="attractions" value="0" checked />
+              <input type="radio" name="attractions" value="1" />
+              <input type="radio" name="attractions" value="2" />
+            </div>
           </div>
-          <div class="image">📷</div>
         </div>
 
-        <!-- Card 3 -->
-        <div class="card">
+        <!-- Card 3: Adventure -->
+        <div class="card" id="adventure-card">
+          <button class="favorite" id="adventure-favorite-btn">♡</button>
+          <img id="adventure-img" class="image" src="" alt="Adventure Image" />
           <div class="info">
-            <h3>Adventure</h3>
-            <p>⭐⭐⭐⭐☆ <strong>Excellent 9.2</strong></p>
-            <p>Small description</p>
-            <p class="price">$50</p>
-            <p class="source">Adventure.com</p>
+            <h4 id="adventure-category">Adventure</h4>
+            <h3 id="adventure-name">Adventure Place</h3>
+            <p><span id="adventure-stars">⭐⭐⭐⭐☆</span> <strong>Excellent</strong></p>
+            <p id="adventure-desc">small description</p>
+            <p class="price">$<span id="adventure-price">50</span></p>
+            <p class="source">
+              <a href="#" target="_blank" id="adventure-link">Adventure.com</a>
+            </p>
+            <div class="dining-radio">
+              <input type="radio" name="adventure" value="0" checked />
+              <input type="radio" name="adventure" value="1" />
+              <input type="radio" name="adventure" value="2" />
+            </div>
           </div>
-          <div class="image">📷</div>
         </div>
 
-        <!-- Card 4 -->
-        <div class="card">
+        <!-- Card 4: Educational -->
+        <div class="card" id="educational-card">
+          <button class="favorite" id="educational-favorite-btn">♡</button>
+          <img id="educational-img" class="image" src="" alt="Educational Image" />
           <div class="info">
-            <h3>Educational</h3>
-            <p>⭐⭐⭐☆☆ <strong>Excellent 9.2</strong></p>
-            <p>Small description</p>
-            <p class="price">$50</p>
-            <p class="source">Educational.com</p>
+          <h4 id="educational-category">Educational</h4>
+          <h3 id="educational-name">Educational Place</h3>
+            <p><span id="educational-stars">⭐⭐⭐☆☆</span> <strong>Excellent</strong></p>
+            <p id="educational-desc">small description</p>
+            <p class="price">$<span id="educational-price">50</span></p>
+            <p class="source">
+              <a href="#" target="_blank" id="educational-link">Educational.com</a>
+            </p>
+            <div class="dining-radio">
+              <input type="radio" name="educational" value="0" checked />
+              <input type="radio" name="educational" value="1" />
+              <input type="radio" name="educational" value="2" />
+            </div>
           </div>
-          <div class="image">📷</div>
         </div>
-      </section>
-    </main>
-  </div>
-
   <!-- Footer -->
   <footer>
     <p>© 2025 Travel Guide Planner | Rommel F. Aunario | WDD 330 Final Project</p>
