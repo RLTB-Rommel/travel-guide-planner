@@ -1,3 +1,5 @@
+import { updateWeather } from "./weather.js";
+
 let educationalData = [];
 
 async function fetchEducationalData() {
@@ -10,7 +12,10 @@ async function fetchEducationalData() {
 
 export async function renderEducational(index = 0) {
   const data = await fetchEducationalData();
-  const place = data[index];
+  const location = data[index];
+
+  console.log("Selected educational data:", location);
+  updateWeather(location.latitude, location.longitude);
 
   // Favorite button
   const favoriteBtn = document.getElementById("educational-favorite-btn");
@@ -18,15 +23,16 @@ export async function renderEducational(index = 0) {
     favoriteBtn.classList.remove("active");
     favoriteBtn.onclick = () => {
       favoriteBtn.classList.toggle("active");
-      console.log(`Toggled favorite for: ${place.name}`);
+
+      console.log(`Toggled favorite for: ${location.name}`);
     };
   }
 
   // Image and map popup
   const imageEl = document.getElementById("educational-img");
   if (imageEl) {
-    imageEl.src = place.image;
-    imageEl.alt = place.name;
+    imageEl.src = location.image;
+    imageEl.alt = location.name;
 
     imageEl.onclick = () => {
       console.log("Map loaded");
@@ -34,8 +40,8 @@ export async function renderEducational(index = 0) {
       const infoText = document.getElementById("map-info-text");
       if (infoText) {
         infoText.innerHTML = `
-          <h3>${place.name}</h3>
-          <p><strong>Location:</strong> ${place.location}</p>
+          <h3>${location.name}</h3>
+          <p><strong>Location:</strong> ${location.location}</p>
         `;
       }
 
@@ -44,7 +50,7 @@ export async function renderEducational(index = 0) {
       }
 
       window.myMap = L.map("leaflet-map", {
-        center: [place.latitude, place.longitude],
+        center: [location.latitude, location.longitude],
         zoom: 13,
         zoomControl: true,
       });
@@ -54,16 +60,16 @@ export async function renderEducational(index = 0) {
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(window.myMap);
 
-      L.marker([place.latitude, place.longitude])
+      L.marker([location.latitude, location.longitude])
         .addTo(window.myMap)
-        .bindPopup(place.name)
+        .bindPopup(location.name)
         .openPopup();
 
       openPopup("popup-map");
 
       setTimeout(() => {
         window.myMap.invalidateSize();
-        window.myMap.panTo([place.latitude, place.longitude]);
+        window.myMap.panTo([location.latitude, location.longitude]);
       }, 200);
     };
   }
@@ -77,17 +83,17 @@ export async function renderEducational(index = 0) {
   const linkEl = document.getElementById("educational-link");
 
   if (categoryEl) categoryEl.textContent = "Educational";
-  if (nameEl) nameEl.textContent = place.name;
-  if (descEl) descEl.textContent = place.description;
-  if (priceEl) priceEl.textContent = place.price;
+  if (nameEl) nameEl.textContent = location.name;
+  if (descEl) descEl.textContent = location.description;
+  if (priceEl) priceEl.textContent = location.price;
   if (starsEl) {
-    const fullStars = "⭐".repeat(Math.floor(place.stars));
-    const half = place.stars % 1 >= 0.5 ? "☆" : "";
+    const fullStars = "⭐".repeat(Math.floor(location.stars));
+    const half = location.stars % 1 >= 0.5 ? "☆" : "";
     starsEl.textContent = fullStars + half;
   }
   if (linkEl) {
     linkEl.href = "#";
-    linkEl.textContent = new URL(place.website).hostname;
+    linkEl.textContent = new URL(location.website).hostname;
     linkEl.onclick = (e) => {
       e.preventDefault();
       openPopup("popup-contact");

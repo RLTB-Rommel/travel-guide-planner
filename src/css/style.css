@@ -205,6 +205,15 @@ body {
   width: 100%;
 }
 
+#detected-city {
+  font-style: italic;
+}
+
+#selected-establishment {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
 /* Responsive */
 @media screen and (max-width: 767px) {
   .container {

@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Science Discovery Center",
+    "stars": 4.5,
+    "description": "Interactive science exhibits for all ages.",
+    "price": 25,
+    "website": "https://educational.com/science",
+    "image": "/assets/science.jpg",
+    "location": "SM Mall of Asia, Pasay City, Philippines",
+    "latitude": 14.5322,
+    "longitude": 120.9801
+  },
+  {
+    "name": "History Museum",
+    "stars": 4.4,
+    "description": "Explore Filipino heritage and culture.",
+    "price": 30,
+    "website": "https://educational.com/history",
+    "image": "/assets/history.jpg",
+    "location": "National Museum, Manila, Philippines",
+    "latitude": 14.5869,
+    "longitude": 120.9814
+  },
+  {
+    "name": "Marine Biology Institute",
+    "stars": 4.6,
+    "description": "Learn about ocean ecosystems and lifeforms.",
+    "price": 20,
+    "website": "https://educational.com/marine",
+    "image": "/assets/marine.jpg",
+    "location": "University of the Philippines, Visayas",
+    "latitude": 10.7056,
+    "longitude": 122.5644
+  }
+]

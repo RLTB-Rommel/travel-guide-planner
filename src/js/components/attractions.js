@@ -1,3 +1,5 @@
+import { updateWeather } from "./weather.js";
+
 let attractionsData = [];
 
 async function fetchAttractionsData() {
@@ -12,6 +14,7 @@ export async function renderAttractions(index = 0) {
   const data = await fetchAttractionsData();
   const place = data[index];
   console.log("Selected attraction data:", place);
+  updateWeather(place.latitude, place.longitude);
 
   // Favorite button (optional)
   const favoriteBtn = document.getElementById("attractions-favorite-btn");

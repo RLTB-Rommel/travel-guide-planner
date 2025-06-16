@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Mountain Trek",
+    "stars": 4.8,
+    "description": "An exciting climb to a scenic viewpoint.",
+    "price": 50,
+    "website": "https://adventure.com/trek",
+    "image": "/assets/trek.jpg",
+    "location": "Mt. Pulag, Benguet, Philippines",
+    "latitude": 16.5892,
+    "longitude": 120.8835
+  },
+  {
+    "name": "Whitewater Rafting",
+    "stars": 4.6,
+    "description": "Thrill ride through fast river currents.",
+    "price": 65,
+    "website": "https://adventure.com/rafting",
+    "image": "/assets/rafting.jpg",
+    "location": "Cagayan de Oro, Philippines",
+    "latitude": 8.4542,
+    "longitude": 124.6319
+  },
+  {
+    "name": "Zipline Safari",
+    "stars": 4.7,
+    "description": "Fly above forests on long ziplines.",
+    "price": 40,
+    "website": "https://adventure.com/zipline",
+    "image": "/assets/zipline.jpg",
+    "location": "Danao Adventure Park, Bohol, Philippines",
+    "latitude": 9.8995,
+    "longitude": 124.1661
+  }
+]
