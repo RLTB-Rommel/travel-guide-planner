@@ -5,7 +5,10 @@
     "description": "Challenging hikes with scenic rewards.",
     "price": 75,
     "website": "https://mountaintrek-reservation.com/trek",
-    "image": "/assets/mountaintrek.jpg"
+    "image": "/assets/mountaintrek.jpg",
+    "location": "Mount Pulag, Benguet, Philippines",
+    "latitude": 16.5922,
+    "longitude": 120.8835
   },
   {
     "name": "White Water Rafting",
@@ -13,7 +16,10 @@
     "description": "High-adrenaline rafting for thrill-seekers.",
     "price": 65,
     "website": "https://rafting-reservation.com/rafting",
-    "image": "/assets/rafting.jpg"
+    "image": "/assets/rafting.jpg",
+    "location": "Cagayan de Oro River, Philippines",
+    "latitude": 8.4542,
+    "longitude": 124.6319
   },
   {
     "name": "Desert Safari Ride",
@@ -21,6 +27,9 @@
     "description": "4x4 off-road experience in the dunes.",
     "price": 55,
     "website": "https://safari-reservation.com/safari",
-    "image": "/assets/safari.jpg"
+    "image": "/assets/safari.jpg",
+    "location": "Lahbab Desert, Dubai, UAE",
+    "latitude": 24.9632,
+    "longitude": 55.3657
   }
 ]

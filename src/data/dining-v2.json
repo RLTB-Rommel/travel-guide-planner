@@ -1,6 +1,7 @@
 [
   {
     "name": "Sunset Bistro",
+    "city": "Boracay",
     "stars": 4.5,
     "description": "Fine dining with a sunset view.",
     "price": 60,
@@ -12,6 +13,7 @@
   },
   {
     "name": "Green Garden Cafe",
+    "city": "Baguio",
     "stars": 4.0,
     "description": "Organic meals in a garden setting.",
     "price": 45,
@@ -23,6 +25,7 @@
   },
   {
     "name": "City Noodle House",
+    "city": "Manila",
     "stars": 4.2,
     "description": "Authentic Asian noodles in the city center.",
     "price": 35,

@@ -5,7 +5,10 @@
     "description": "Panoramic views from the top of the city.",
     "price": 20,
     "website": "https://skyview-reservation.com/skyview",
-    "image": "/assets/skyview.jpg"
+    "image": "/assets/skyview.jpg",
+    "location": "Quezon Memorial Circle, Quezon City, Philippines",
+    "latitude": 14.6507,
+    "longitude": 121.0495
   },
   {
     "name": "Old City Ruins",
@@ -13,7 +16,10 @@
     "description": "A walk through ancient city foundations.",
     "price": 15,
     "website": "https://ruins-reservation.com/ruins",
-    "image": "/assets/ruins.jpg"
+    "image": "/assets/ruins.jpg",
+    "location": "Intramuros, Manila, Philippines",
+    "latitude": 14.5906,
+    "longitude": 120.9747
   },
   {
     "name": "Oceanfront Aquarium",
@@ -21,6 +27,9 @@
     "description": "Discover marine life near the shore.",
     "price": 30,
     "website": "https://aquarium-reservation.com/aquarium",
-    "image": "/assets/aquarium.jpg"
+    "image": "/assets/aquarium.jpg",
+    "location": "Manila Ocean Park, Manila, Philippines",
+    "latitude": 14.5794,
+    "longitude": 120.9724
   }
 ]

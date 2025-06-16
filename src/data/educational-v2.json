@@ -5,7 +5,10 @@
     "description": "Interactive exhibits on physics and biology.",
     "price": 25,
     "website": "https://sciencemuseum-reservation.com/nsm",
-    "image": "/assets/sciencemuseum.jpg"
+    "image": "/assets/sciencemuseum.jpg",
+    "location": "Science Centrum, Marikina City, Philippines",
+    "latitude": 14.6236,
+    "longitude": 121.1022
   },
   {
     "name": "Art & History Hall",
@@ -13,7 +16,10 @@
     "description": "Famous art and national artifacts in one place.",
     "price": 18,
     "website": "https://arthistory-reservation.com/arthall",
-    "image": "/assets/arthistory.jpg"
+    "image": "/assets/arthistory.jpg",
+    "location": "National Museum of Fine Arts, Manila, Philippines",
+    "latitude": 14.5886,
+    "longitude": 120.9812
   },
   {
     "name": "Tech Exploratorium",
@@ -21,6 +27,9 @@
     "description": "Future-focused exhibits on robotics and AI.",
     "price": 22,
     "website": "https://techx-reservation.com/techx",
-    "image": "/assets/techx.jpg"
+    "image": "/assets/techx.jpg",
+    "location": "UP TechnoHub, Quezon City, Philippines",
+    "latitude": 14.6587,
+    "longitude": 121.0645
   }
 ]

@@ -56,23 +56,20 @@
       <!-- Weather Panel -->
       <div id="weather-panel" class="weather-container">
         <div class="weather-left">
-          <h3 class="section-label">
-            Current Weather
-            <span id="active-location-name" style="font-weight: 600; margin-left: 0.5rem;"></span>
-          </h3>
-          <div class="current-weather-card">
-            <p><strong>Today</strong></p>
-            <div class="temp-row">
-              <p id="current-temp">Loading...</p>
-              <div id="weather-icon"></div>
-             <button id="unit-toggle">↔</button>
-            </div>
-            <p class="weather-location">
-              Location: <span id="weather-location-value">Loading...</span>
-            </p>
+          <h3>Weather</h3>
+          <p><strong>Today</strong></p>
+
+          <div class="temp-row">
+            <p id="current-temp">Loading...</p>
+            <div id="weather-icon"></div>
+            <button id="unit-toggle">↔</button>
           </div>
+
+          <p class="weather-location">
+            Location: <span id="weather-location-value">Loading...</span>
+          </p>
         </div>
-        <div class="weather-right">
+        <div class="forecast">
           <h4>3-Day Forecast</h4>
           <div id="forecast-days" class="forecast-days">
             <!-- Filled by JS -->
@@ -102,6 +99,8 @@
             </div>
           </div>
         </div>
+
+        <!-- Repeat Cards: Attractions, Adventure, Educational (same structure) -->
 
         <!-- Attractions Card -->
         <div class="card" id="attractions-card">
@@ -175,7 +174,7 @@
     <p>Last modified: mm/dd/yyyy hr:min:secs</p>
   </footer>
 
-  <!-- Modals -->
+  <!-- Modal: Contact -->
   <div id="popup-contact" class="popup-overlay">
     <div class="popup-content">
       <button class="close-btn" onclick="closePopup('popup-contact')">×</button>
@@ -183,6 +182,7 @@
     </div>
   </div>
 
+  <!-- Modal: Map -->
   <div id="popup-map" class="popup-overlay">
     <div class="popup-content" style="flex-direction: column;">
       <button class="close-btn" onclick="closePopup('popup-map')">×</button>
@@ -191,8 +191,11 @@
     </div>
   </div>
 
-  <!-- Scripts -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <!-- Leaflet and Scripts -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    crossorigin=""
+  ></script>
   <script>
     function openPopup(id) {
       document.getElementById(id).style.display = 'flex';

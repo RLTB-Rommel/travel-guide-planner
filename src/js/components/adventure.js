@@ -2,7 +2,8 @@ let adventureData = [];
 
 async function fetchAdventureData() {
   if (adventureData.length === 0) {
-    const res = await fetch("/data/adventure.json");
+    const res = await fetch("/data/adventure-v2.json");
+    //const res = await fetch("/data/adventure.json?t=" + Date.now());
     adventureData = await res.json();
   }
   return adventureData;
@@ -12,7 +13,9 @@ export async function renderAdventure(index = 0) {
   const data = await fetchAdventureData();
   const place = data[index];
 
-  // Favorite button (optional, if added in HTML)
+  console.log("Selected adventure data:", place);
+
+  // Favorite button
   const favoriteBtn = document.getElementById("adventure-favorite-btn");
   if (favoriteBtn) {
     favoriteBtn.classList.remove("active");
@@ -22,17 +25,70 @@ export async function renderAdventure(index = 0) {
     };
   }
 
-  // DOM Updates
-  document.getElementById("adventure-img").src = place.image;
-  document.getElementById("adventure-img").alt = place.name;
+  // Image setup
+  const imageEl = document.getElementById("adventure-img");
+  imageEl.src = place.image;
+  imageEl.alt = place.name;
+
+  imageEl.onclick = () => {
+    console.log("Adventure map loaded");
+
+    // Ensure place has coordinates
+    if (!place.latitude || !place.longitude) {
+      alert("This location does not have coordinates.");
+      return;
+    }
+
+    // Update map info
+    document.getElementById("map-info-text").innerHTML = `
+      <h3>${place.name}</h3>
+      <p><strong>Location:</strong> ${place.location}</p>
+    `;
+
+    if (window.myMap) {
+      window.myMap.remove();
+    }
+
+    window.myMap = L.map("leaflet-map", {
+      center: [place.latitude, place.longitude],
+      zoom: 13,
+      zoomControl: true
+    });
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(window.myMap);
+
+    L.marker([place.latitude, place.longitude])
+      .addTo(window.myMap)
+      .bindPopup(place.name)
+      .openPopup();
+
+    openPopup("popup-map");
+
+    setTimeout(() => {
+      window.myMap.invalidateSize();
+      window.myMap.panTo([place.latitude, place.longitude]);
+    }, 200);
+  };
+
+  // Update card fields
   document.getElementById("adventure-category").textContent = "Adventure";
   document.getElementById("adventure-name").textContent = place.name;
   document.getElementById("adventure-stars").textContent =
-    "⭐".repeat(Math.floor(place.stars)) + (place.stars % 1 >= 0.5 ? "☆" : "");
+    "⭐".repeat(Math.floor(place.stars)) +
+    (place.stars % 1 >= 0.5 ? "☆" : "");
   document.getElementById("adventure-desc").textContent = place.description;
   document.getElementById("adventure-price").textContent = place.price;
-  document.getElementById("adventure-link").href = place.website;
-  document.getElementById("adventure-link").textContent = new URL(place.website).hostname;
+
+  // Website link
+  const linkEl = document.getElementById("adventure-link");
+  linkEl.href = "#";
+  linkEl.textContent = new URL(place.website).hostname;
+  linkEl.onclick = (e) => {
+    e.preventDefault();
+    openPopup("popup-contact");
+  };
 }
 
 export function setupAdventureRadio() {

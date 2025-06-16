@@ -1,8 +1,10 @@
+import { updateWeather } from "./weather.js";
+
 let diningData = [];
 
 async function fetchDiningData() {
   if (diningData.length === 0) {
-    const res = await fetch("/data/dining.json");
+    const res = await fetch("/data/dining-v2.json");
     diningData = await res.json();
   }
   return diningData;
@@ -11,6 +13,10 @@ async function fetchDiningData() {
 export async function renderDining(index = 0) {
   const data = await fetchDiningData();
   const restaurant = data[index];
+
+  console.log("Using lat/lng for weather:", restaurant.latitude, restaurant.longitude);
+
+  updateWeather(restaurant.latitude, restaurant.longitude);
 
   // Favorite button
   const favoriteBtn = document.getElementById("favorite-btn");
@@ -39,6 +45,7 @@ export async function renderDining(index = 0) {
     // Remove previous map instance
     if (window.myMap) {
       window.myMap.remove();
+      document.getElementById("leaflet-map").innerHTML = ""; // forcibly clear container
     }
 
     // Create new map centered on restaurant
