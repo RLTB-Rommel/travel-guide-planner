@@ -4,7 +4,7 @@ let adventureData = [];
 
 async function fetchAdventureData() {
   if (adventureData.length === 0) {
-    const res = await fetch("/data/adventure-v2.json");
+    const res = await fetch("/assets/data/adventure-v3.json");
     //const res = await fetch("/data/adventure.json?t=" + Date.now());
     adventureData = await res.json();
   }

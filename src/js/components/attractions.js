@@ -4,7 +4,7 @@ let attractionsData = [];
 
 async function fetchAttractionsData() {
   if (attractionsData.length === 0) {
-    const res = await fetch("/data/attractions-v2.json");
+    const res = await fetch("/assets/data/attractions-v3.json");
     attractionsData = await res.json();
   }
   return attractionsData;

@@ -1,7 +1,8 @@
-import { renderDining } from './components/dining.js';
+import { renderDining, setupDiningRadio } from './components/dining.js';
 import { renderAttractions, setupAttractionsRadio } from './components/attractions.js';
 import { renderAdventure, setupAdventureRadio } from './components/adventure.js';
 import { renderEducational, setupEducationalRadio } from './components/educational.js';
+import { updateWeather } from './components/weather.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   // Initial render of all cards
@@ -11,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderEducational(0);
 
   // Set up individual radio handlers
-  //setupDiningRadio();
+  setupDiningRadio();
   setupAttractionsRadio();
   setupAdventureRadio();
   setupEducationalRadio();
@@ -29,8 +30,9 @@ function setupSelectedEstablishmentDisplay() {
     document.querySelectorAll(`input[name="${group}"]`).forEach((radio) => {
       radio.addEventListener('change', () => {
         const titleEl = document.getElementById(`${group}-name`);
-        if (titleEl) {
-          document.getElementById('selected-establishment').innerText = titleEl.textContent;
+        const selectedDisplay = document.getElementById('selected-establishment');
+        if (titleEl && selectedDisplay) {
+          selectedDisplay.innerText = titleEl.textContent;
         }
       });
     });
@@ -41,7 +43,8 @@ function detectUserLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(success, error);
   } else {
-    document.getElementById("active-location-name").innerText = "Not supported";
+    const locEl = document.getElementById("active-location-name");
+    if (locEl) locEl.innerText = "Not supported";
   }
 }
 
@@ -49,10 +52,12 @@ function success(position) {
   const lat = position.coords.latitude;
   const lon = position.coords.longitude;
   reverseGeocode(lat, lon);
+  updateWeather(lat, lon); // Trigger weather update
 }
 
 function error() {
-  document.getElementById("active-location-name").innerText = "Unavailable";
+  const locEl = document.getElementById("active-location-name");
+  if (locEl) locEl.innerText = "Unavailable";
 }
 
 async function reverseGeocode(lat, lon) {
@@ -62,9 +67,11 @@ async function reverseGeocode(lat, lon) {
     const data = await response.json();
     const components = data.address;
     const city = components.city || components.town || components.village || components.state || "Unknown";
-    document.getElementById("active-location-name").innerText = city;
+    const locEl = document.getElementById("active-location-name");
+    if (locEl) locEl.innerText = city;
   } catch (err) {
     console.error("Reverse geocoding failed:", err);
-    document.getElementById("active-location-name").innerText = "Error";
+    const locEl = document.getElementById("active-location-name");
+    if (locEl) locEl.innerText = "Error";
   }
 }

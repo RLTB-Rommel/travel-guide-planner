@@ -1,93 +1,69 @@
 let isCelsius = true;
-let currentCoords = { latitude: 14.5995, longitude: 120.9842 }; // Default: Manila
-const apiKey = 'd36ad3e1b3f048fda9b132733251506'; // Replace with your actual WeatherAPI key
+let currentCoords = { latitude: null, longitude: null };
+let cachedWeatherData = null;
 
-export async function updateWeather(latitude, longitude) {
-  if (!latitude || !longitude) {
-    console.error("Invalid coordinates for weather:", latitude, longitude);
-    return;
+document.getElementById('unit-toggle')?.addEventListener('click', () => {
+  isCelsius = !isCelsius;
+
+  // 🔸 Only re-render using cached data — no re-fetching!
+  if (cachedWeatherData) {
+    renderWeather(cachedWeatherData);
   }
+});
 
-  currentCoords = { latitude, longitude };
+export async function updateWeather(lat, lng) {
+  currentCoords.latitude = lat;
+  currentCoords.longitude = lng;
 
-  console.log("Calling updateWeather with:", latitude, longitude);
-
-  const unit = isCelsius ? 'C' : 'F';
-  const query = `${latitude},${longitude}`;
-  const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${query}&days=3`;
+  const apiKey = 'd36ad3e1b3f048fda9b132733251506';
+  const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${lat},${lng}&days=4`;
 
   try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`WeatherAPI error: ${response.status}`);
-    }
+    const res = await fetch(url);
+    const data = await res.json();
 
-    const data = await response.json();
-    const current = data.current;
-    const location = data.location;
-    const forecast = data.forecast.forecastday;
+    cachedWeatherData = data; // 🔹 Save the full weather data
+    renderWeather(data);      // 🔹 Render immediately using this data
 
-    // Update DOM elements safely
-    const tempEl = document.getElementById('current-temp');
-    const iconEl = document.getElementById('weather-icon');
-    const locationEl = document.getElementById('weather-location-value');
-    const forecastEl = document.getElementById('forecast-days');
-
-    if (tempEl && current) {
-      tempEl.textContent = `${current[`temp_${unit.toLowerCase()}`]}° ${unit} - ${current.condition.text}`;
-    }
-
-    if (iconEl && current.condition.icon) {
-      iconEl.innerHTML = `<img src="${current.condition.icon}" alt="Weather icon">`;
-    }
-
-    if (locationEl && location) {
-      locationEl.textContent = `${location.name}, ${location.country}`;
-    }
-
-    if (forecastEl) {
-      forecastEl.innerHTML = forecast
-        .map(day => {
-          const dayName = new Date(day.date).toLocaleDateString('en-US', { weekday: 'long' });
-          return `
-            <div>
-              <strong>${dayName}</strong>
-              <p>${day.day[`avgtemp_${unit.toLowerCase()}`]}°${unit} - ${day.day.condition.text}</p>
-              <img src="${day.day.condition.icon}" alt="Icon" />
-            </div>
-          `;
-        })
-        .join('');
-    }
-
-    // ✅ Reverse Geocoding to update dynamic label
-    const labelEl = document.getElementById('active-location-name');
-    if (labelEl) {
-      fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
-        .then(res => res.json())
-        .then(data => {
-          const city = data.address.city || data.address.town || data.address.village || data.address.county || '';
-          const country = data.address.country || '';
-          labelEl.textContent = city && country ? `${city}, ${country}` : `${location.name}, ${location.country}`;
-        })
-        .catch(() => {
-          labelEl.textContent = `${location.name}, ${location.country}`;
-        });
-    }
-
-  } catch (error) {
-    console.error('Weather error:', error);
-    const tempEl = document.getElementById('current-temp');
-    const locationEl = document.getElementById('weather-location-value');
-    const labelEl = document.getElementById('active-location-name');
-    if (tempEl) tempEl.textContent = 'Weather data not available.';
-    if (locationEl) locationEl.textContent = 'Loading...';
-    if (labelEl) labelEl.textContent = '(Location unavailable)';
+  } catch (err) {
+    console.error("Weather API error:", err);
   }
 }
 
-// Toggle temperature unit and refresh display
-document.getElementById('unit-toggle')?.addEventListener('click', () => {
-  isCelsius = !isCelsius;
-  updateWeather(currentCoords.latitude, currentCoords.longitude);
-});
+// 🔻 NEW: renderWeather() only updates the UI without fetching again
+function renderWeather(data) {
+  const temp = isCelsius ? data.current.temp_c : data.current.temp_f;
+  const unit = isCelsius ? "°C" : "°F";
+  const condition = data.current.condition.text;
+  const icon = data.current.condition.icon;
+  const locationName = data.location.name;
+
+  document.getElementById("current-temp").textContent = `${temp}${unit}`;
+  document.getElementById("weather-location-value").textContent = locationName;
+  document.getElementById("weather-condition").textContent = condition;
+  document.getElementById("weather-icon").innerHTML = `<img src="https:${icon}" alt="${condition}" />`;
+
+  // FORECAST (next 3 days)
+  const forecastContainer = document.getElementById("forecast-days");
+  forecastContainer.innerHTML = '';
+
+  const forecastDays = data.forecast.forecastday.slice(1); // Exclude today
+  forecastDays.forEach((day) => {
+    const forecastCard = document.createElement("div");
+    forecastCard.classList.add("forecast-card");
+
+    const dayTemp = isCelsius ? day.day.avgtemp_c : day.day.avgtemp_f;
+    const dayIcon = day.day.condition.icon;
+    const dayCondition = day.day.condition.text;
+    const dayName = new Date(day.date).toLocaleDateString("en-US", { weekday: "short" });
+
+    forecastCard.innerHTML = `
+      <h5>${dayName}</h5>
+      <img src="https:${dayIcon}" alt="${dayCondition}" />
+      <p>${dayTemp}${unit}</p>
+      <p class="forecast-condition">${dayCondition}</p>
+    `;
+
+    forecastContainer.appendChild(forecastCard);
+  });
+}

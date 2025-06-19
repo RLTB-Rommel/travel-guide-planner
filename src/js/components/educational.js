@@ -4,7 +4,7 @@ let educationalData = [];
 
 async function fetchEducationalData() {
   if (educationalData.length === 0) {
-    const res = await fetch("/data/educational-v2.json");
+    const res = await fetch("/assets/data/educational-v3.json");
     educationalData = await res.json();
   }
   return educationalData;

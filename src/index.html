@@ -32,8 +32,9 @@
     <main class="main-content">
       <!-- Search and Filter Bar -->
       <header class="top-bar">
-        <input type="text" placeholder="City, Country" />
-        <button>🔍</button>
+        <input type="text" id="location-input" placeholder="City, Country" list="location-list" />
+        <datalist id="location-list"></datalist>
+        <button id="search-button">🔍</button>
       </header>
 
       <!-- Filters -->
@@ -61,20 +62,22 @@
             <span id="selected-establishment" style="font-weight: 600; margin-left: 0.5rem;"></span>
           </h3>
           <div class="current-weather-card">
+
+            
             <p><strong>Today</strong></p>
             <div class="temp-row">
               <p id="current-temp">Loading...</p>
               <div id="weather-icon"></div>
-              <button id="unit-toggle">↔</button>
+              <!-- <button id="unit-toggle">↔</button>-->
             </div>
+            <p>
+            Condition: <span id="weather-condition">Loading...</span>
+            </p>
+
             <p class="weather-location">
               Location: <span id="weather-location-value">Loading...</span>
             </p>
             
-            <!-- Selected establishment name
-            //<p>
-              //Selected: <span id="selected-establishment" style="font-weight: bold;"></span>
-            </p>-->
           </div>
         </div>
         <div class="weather-right">
@@ -176,8 +179,12 @@
 
   <!-- Footer -->
   <footer>
-    <p>© 2025 Travel Guide Planner | Rommel F. Aunario | WDD 330 Final Project</p>
-    <p>Last modified: mm/dd/yyyy hr:min:secs</p>
+    <div class="inline-content">
+      <p>&copy; <span id="year"></span></p>
+      <p><img class="airplane" src="images/airplane.png" alt="Airplane Icon" /> Travel Guide Planner | Rommel F. Aunario | WDD330 <img class="airplane" src="images/airplane.png" alt="Airplane Icon" /></p>
+      <p>Philippines <img class="flag" src="images/flag.png" alt="Country Flag" /></p>
+    </div>
+    <p id="lastModified"></p>
   </footer>
 
   <!-- Modals -->
@@ -214,5 +221,7 @@
     });
   </script>
   <script type="module" src="/js/app.js"></script>
+  <script type="module" src="/js/components/search.js"></script>
+  <script src="/js/components/getDates.js"></script>
 </body>
 </html>
