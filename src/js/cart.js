@@ -1,40 +1,29 @@
 // render-cart.js
 import { getLocalStorage, setLocalStorage, clearLocalStorageKey } from "./utils.mjs";
 
+// Add item to cart
 export function addToCart(item) {
-  const cart = getCart();
+  const cart = getLocalStorage("cart");
   cart.push(item);
-  localStorage.setItem("travelCart", JSON.stringify(cart));
+  setLocalStorage("cart", cart);
 }
 
+// Get full cart
 export function getCart() {
-  return JSON.parse(localStorage.getItem("travelCart") || "[]");
+  return getLocalStorage("cart");
 }
 
+// Render cart items to the UI
 export function renderCartContents() {
-  const cartList = document.getElementById("cart-items");
-  if (!cartList) {
-    console.warn("cart-items element not found.");
-    return;
-  }
-
-  const cart = getCart();
-  cartList.innerHTML = "";
-
-  cart.forEach(item => {
-    const li = document.createElement("li");
-    li.textContent = `${item.name} - $${item.price}`;
-    cartList.appendChild(li);
-  });
-}
-
-
-
-
-function renderCartContents() {
-  const cartItems = getLocalStorage("cart") || [];
   const container = document.querySelector(".product-list");
   const summary = document.getElementById("cart-summary");
+
+  const cartItems = getCart();
+
+  if (!container) {
+    console.warn("product-list element not found.");
+    return;
+  }
 
   if (!cartItems.length) {
     container.innerHTML = `
@@ -48,6 +37,7 @@ function renderCartContents() {
   }
 
   const total = cartItems.reduce((sum, item) => sum + item.price, 0);
+
   container.innerHTML = `<ul class="cart-list">
     ${cartItems.map(cartItemTemplate).join("")}
   </ul>`;
@@ -57,6 +47,7 @@ function renderCartContents() {
   }
 }
 
+// Template for each cart item
 function cartItemTemplate(item) {
   return `<li class="cart-card">
     <h3>${item.name}</h3>
@@ -65,12 +56,7 @@ function cartItemTemplate(item) {
   </li>`;
 }
 
-export function addToCart(item) {
-  const cart = getLocalStorage("cart");
-  cart.push(item);
-  setLocalStorage("cart", cart);
-}
-
+// Hook up clear cart button
 const clearButton = document.getElementById("clear-cart");
 if (clearButton) {
   clearButton.addEventListener("click", () => {
@@ -79,4 +65,5 @@ if (clearButton) {
   });
 }
 
+// Initial render
 renderCartContents();
