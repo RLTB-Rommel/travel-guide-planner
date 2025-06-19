@@ -1,77 +1,57 @@
-import { renderDining, setupDiningRadio } from './components/dining.js';
-import { renderAttractions, setupAttractionsRadio } from './components/attractions.js';
-import { renderAdventure, setupAdventureRadio } from './components/adventure.js';
-import { renderEducational, setupEducationalRadio } from './components/educational.js';
-import { updateWeather } from './components/weather.js';
+import { addToCart } from './cart.js';
 
-document.addEventListener("DOMContentLoaded", () => {
-  // Initial render of all cards
-  renderDining(0);
-  renderAttractions(0);
-  renderAdventure(0);
-  renderEducational(0);
+function setupFavorites() {
+  const favorites = [
+    {
+      btnId: 'favorite-btn',
+      nameId: 'dining-name',
+      priceId: 'dining-price',
+      categoryId: 'dining-category',
+    },
+    {
+      btnId: 'attractions-favorite-btn',
+      nameId: 'attractions-name',
+      priceId: 'attractions-price',
+      categoryId: 'attractions-category',
+    },
+    {
+      btnId: 'adventure-favorite-btn',
+      nameId: 'adventure-name',
+      priceId: 'adventure-price',
+      categoryId: 'adventure-category',
+    },
+    {
+      btnId: 'educational-favorite-btn',
+      nameId: 'educational-name',
+      priceId: 'educational-price',
+      categoryId: 'educational-category',
+    }
+  ];
 
-  // Set up individual radio handlers
-  setupDiningRadio();
-  setupAttractionsRadio();
-  setupAdventureRadio();
-  setupEducationalRadio();
+  favorites.forEach(({ btnId, nameId, priceId, categoryId }) => {
+    const btn = document.getElementById(btnId);
+    if (!btn) return;
 
-  // Setup shared radio selection listener for displaying card name
-  setupSelectedEstablishmentDisplay();
+    btn.addEventListener('click', () => {
+      const name = document.getElementById(nameId)?.textContent?.trim() || "Unknown";
+      const price = parseFloat(document.getElementById(priceId)?.textContent?.trim()) || 0;
+      const category = document.getElementById(categoryId)?.textContent?.trim() || "Category";
 
-  // Start geolocation and show result in #active-location-name
-  detectUserLocation();
-});
+      const item = {
+        name,
+        price,
+        category,
+        timestamp: new Date().toISOString()
+      };
 
-function setupSelectedEstablishmentDisplay() {
-  const radioGroups = ['dining', 'attractions', 'adventure', 'educational'];
-  radioGroups.forEach(group => {
-    document.querySelectorAll(`input[name="${group}"]`).forEach((radio) => {
-      radio.addEventListener('change', () => {
-        const titleEl = document.getElementById(`${group}-name`);
-        const selectedDisplay = document.getElementById('selected-establishment');
-        if (titleEl && selectedDisplay) {
-          selectedDisplay.innerText = titleEl.textContent;
-        }
-      });
+      addToCart(item);
+      btn.textContent = '♥'; // Update icon to show it's saved
+      btn.classList.add('favorited');
     });
   });
 }
 
-function detectUserLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(success, error);
-  } else {
-    const locEl = document.getElementById("active-location-name");
-    if (locEl) locEl.innerText = "Not supported";
-  }
-}
-
-function success(position) {
-  const lat = position.coords.latitude;
-  const lon = position.coords.longitude;
-  reverseGeocode(lat, lon);
-  updateWeather(lat, lon); // Trigger weather update
-}
-
-function error() {
-  const locEl = document.getElementById("active-location-name");
-  if (locEl) locEl.innerText = "Unavailable";
-}
-
-async function reverseGeocode(lat, lon) {
-  try {
-    const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`;
-    const response = await fetch(url);
-    const data = await response.json();
-    const components = data.address;
-    const city = components.city || components.town || components.village || components.state || "Unknown";
-    const locEl = document.getElementById("active-location-name");
-    if (locEl) locEl.innerText = city;
-  } catch (err) {
-    console.error("Reverse geocoding failed:", err);
-    const locEl = document.getElementById("active-location-name");
-    if (locEl) locEl.innerText = "Error";
-  }
-}
+// Initialize on DOM ready
+document.addEventListener('DOMContentLoaded', () => {
+  setupFavorites();
+});

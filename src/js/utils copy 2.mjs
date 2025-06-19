@@ -3,7 +3,6 @@ export function updateInnerText(id, text) {
   if (el) el.innerText = text;
 }
 
-// Update image source and alt text
 export function updateImageSrc(id, url, alt = "") {
   const el = document.getElementById(id);
   if (el) {
@@ -12,7 +11,6 @@ export function updateImageSrc(id, url, alt = "") {
   }
 }
 
-// Fetch and update weather info for current and forecast days
 export async function updateWeather(latitude, longitude, placeName) {
   const apiKey = 'd36ad3e1b3f048fda9b132733251506'; // Replace with your key if needed
   const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${latitude},${longitude}&days=3`;
@@ -48,7 +46,6 @@ export async function updateWeather(latitude, longitude, placeName) {
   }
 }
 
-// Get city/town name from coordinates using Nominatim reverse geocoding
 export async function reverseGeocode(lat, lng) {
   const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`;
   try {
@@ -59,19 +56,4 @@ export async function reverseGeocode(lat, lng) {
     console.error("Reverse geocoding failed:", err);
     return "Unknown location";
   }
-}
-
-// Retrieve value from localStorage and parse it
-export function getLocalStorage(key) {
-  return JSON.parse(localStorage.getItem(key)) || [];
-}
-
-// Save a value to localStorage as a JSON string
-export function setLocalStorage(key, data) {
-  localStorage.setItem(key, JSON.stringify(data));
-}
-
-// Remove a specific key from localStorage
-export function clearLocalStorageKey(key) {
-  localStorage.removeItem(key);
 }

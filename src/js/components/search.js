@@ -1,4 +1,6 @@
 import { updateInnerText, updateImageSrc, updateWeather } from './utils.mjs';
+//import { addToCart } from '../cart.js';
+//import { addToCart } from '../cart.js';
 
 let currentCoords = { latitude: null, longitude: null };
 let diningData = [], adventureData = [], attractionsData = [], educationalData = [];
@@ -23,6 +25,24 @@ function updateCard(prefix, data, index) {
   updateInnerText(`${prefix}-stars`, '⭐'.repeat(Math.floor(place.stars)) + '☆');
   updateInnerText(`${prefix}-category`, prefix.charAt(0).toUpperCase() + prefix.slice(1));
   updateImageSrc(`${prefix}-img`, place.image, `${place.name} image`);
+
+
+  const favoriteBtn = document.getElementById(`${prefix}-favorite-btn`);
+  if (favoriteBtn) {
+    favoriteBtn.classList.remove("active");
+    favoriteBtn.onclick = () => {
+      favoriteBtn.classList.toggle("active");
+
+      addToCart({
+        name: place.name,
+        price: place.price,
+        category: prefix.charAt(0).toUpperCase() + prefix.slice(1),
+        timestamp: new Date().toISOString()
+      });
+
+      console.log(`Added to cart: ${place.name}`);
+    };
+  }  
 
   const imageEl = document.getElementById(`${prefix}-img`);
   if (imageEl) {
@@ -215,3 +235,8 @@ async function loadLocationsToDatalist() {
 }
 
 document.addEventListener("DOMContentLoaded", loadLocationsToDatalist);
+document.addEventListener("DOMContentLoaded", () => {
+  loadLocationsToDatalist();
+  document.getElementById("location-input").value = "Manila, Philippines";
+  document.getElementById("search-button").click();
+});

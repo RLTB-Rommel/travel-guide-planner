@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Travel Cart</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">✈️ Travel Guide<br />Planner</div>
+      <div class="nav-icons">
+        <button onclick="location.href='/index.html'">Explore</button>
+        <button>Profile</button>
+        <button>Chat</button>
+        <button>Feed</button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="top-bar">
+        <h1>🛒 Your Travel Cart</h1>
+      </header>
+
+      <section class="results">
+        <ul id="cart-items"></ul>
+        <div id="cart-summary" class="summary"></div>
+        <div class="cart-controls">
+          <button id="clear-cart">Clear Cart</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="inline-content">
+      <p>&copy; <span id="year"></span></p>
+      <p>
+        <img class="airplane" src="images/airplane.png" alt="Airplane Icon" />
+        Travel Guide Planner | Rommel F. Aunario | WDD330
+        <img class="airplane" src="images/airplane.png" alt="Airplane Icon" />
+      </p>
+      <p>Philippines <img class="flag" src="images/flag.png" alt="Country Flag" /></p>
+    </div>
+    <p id="lastModified"></p>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="/js/render-cart.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("lastModified").textContent = `Last Modified: ${document.lastModified}`;
+  </script>
+</body>
+</html>

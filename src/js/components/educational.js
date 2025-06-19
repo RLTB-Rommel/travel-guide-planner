@@ -1,4 +1,5 @@
 import { updateWeather } from "./weather.js";
+import { addToCart } from './cart.js';
 
 let educationalData = [];
 
@@ -18,15 +19,22 @@ export async function renderEducational(index = 0) {
   updateWeather(location.latitude, location.longitude);
 
   // Favorite button
-  const favoriteBtn = document.getElementById("educational-favorite-btn");
-  if (favoriteBtn) {
-    favoriteBtn.classList.remove("active");
-    favoriteBtn.onclick = () => {
-      favoriteBtn.classList.toggle("active");
+   const favoriteBtn = document.getElementById("favorite-btn");
+   if (favoriteBtn) {
+     favoriteBtn.classList.remove("active");
+     favoriteBtn.onclick = () => {
+       favoriteBtn.classList.toggle("active");
 
-      console.log(`Toggled favorite for: ${location.name}`);
-    };
-  }
+       addToCart({
+         name: restaurant.name,
+         price: restaurant.price,
+         category: "Dining",
+         timestamp: new Date().toISOString()
+       });
+
+       console.log(`Added to cart: ${restaurant.name}`);
+     };
+   }
 
   // Image and map popup
   const imageEl = document.getElementById("educational-img");

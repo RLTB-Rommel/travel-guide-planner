@@ -1,6 +1,8 @@
 import { updateWeather } from "./weather.js";
+import { addToCart } from './cart.js';
 
 let attractionsData = [];
+
 
 async function fetchAttractionsData() {
   if (attractionsData.length === 0) {
@@ -17,14 +19,22 @@ export async function renderAttractions(index = 0) {
   updateWeather(place.latitude, place.longitude);
 
   // Favorite button (optional)
-  const favoriteBtn = document.getElementById("attractions-favorite-btn");
-  if (favoriteBtn) {
-    favoriteBtn.classList.remove("active");
-    favoriteBtn.onclick = () => {
-      favoriteBtn.classList.toggle("active");
-      console.log(`Toggled favorite for: ${place.name}`);
-    };
-  }
+   const favoriteBtn = document.getElementById("favorite-btn");
+   if (favoriteBtn) {
+     favoriteBtn.classList.remove("active");
+     favoriteBtn.onclick = () => {
+       favoriteBtn.classList.toggle("active");
+
+       addToCart({
+         name: restaurant.name,
+         price: restaurant.price,
+         category: "Dining",
+         timestamp: new Date().toISOString()
+       });
+
+       console.log(`Added to cart: ${restaurant.name}`);
+     };
+   }
 
   // Update image and bind map click
   const imageEl = document.getElementById("attractions-img");

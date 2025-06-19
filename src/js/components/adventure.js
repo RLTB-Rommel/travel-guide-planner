@@ -1,4 +1,5 @@
 import { updateWeather } from "./weather.js";
+import { addToCart } from './cart.js';
 
 let adventureData = [];
 
@@ -19,14 +20,22 @@ export async function renderAdventure(index = 0) {
   updateWeather(place.latitude, place.longitude);
 
   // Favorite button
-  const favoriteBtn = document.getElementById("adventure-favorite-btn");
-  if (favoriteBtn) {
-    favoriteBtn.classList.remove("active");
-    favoriteBtn.onclick = () => {
-      favoriteBtn.classList.toggle("active");
-      console.log(`Toggled favorite for: ${place.name}`);
-    };
-  }
+   const favoriteBtn = document.getElementById("favorite-btn");
+   if (favoriteBtn) {
+     favoriteBtn.classList.remove("active");
+     favoriteBtn.onclick = () => {
+       favoriteBtn.classList.toggle("active");
+
+       addToCart({
+        name: place.name,
+        price: place.price,
+        category: "Adventure",
+        timestamp: new Date().toISOString()
+      });
+
+      console.log(`Added to cart: ${restaurant.name}`);
+     };
+   }
 
   // Image setup
   const imageEl = document.getElementById("adventure-img");
